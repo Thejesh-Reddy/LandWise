@@ -72,7 +72,7 @@ class PriceModel:
             ("prep",pre),
             ("model",HistGradientBoostingRegressor(max_iter=180,learning_rate=0.05,max_leaf_nodes=15,l2_regularization=2.0,random_state=42)),
         ])
-        groups=[f"{x["latitude"]:.3f},{x["longitude"]:.3f}" for x,_ in rows]
+        groups=[f"{x['latitude']:.3f},{x['longitude']:.3f}" for x,_ in rows]
         splitter=GroupShuffleSplit(n_splits=1,test_size=0.2,random_state=42)
         tr_idx,te_idx=next(splitter.split(X,y,groups=groups))
         Xtr=[X[i] for i in tr_idx]; Xte=[X[i] for i in te_idx]
